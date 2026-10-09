@@ -3,7 +3,7 @@
 
  export default merge(common, {
    mode: 'development',
-   devtool: 'eval-source-map',
+   devtool: 'inline-source-map',
    devServer: {
      static: './dist',
    },
