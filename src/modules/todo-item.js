@@ -1,5 +1,6 @@
 export default class {
-  doneStatus = false; //status for task completed or not
+  doneStatus = false;
+  #id; //status for task completed or not
   constructor(title, description, dueDate,priority,note) {
     this.title = title;
     this.description = description;
@@ -9,5 +10,8 @@ export default class {
   }
   toggleStatus() {
     this.doneStatus = this.doneStatus === false ? this.doneStatus = true : false;
+  }
+  set setId(id){
+    this.#id = id;
   }
 }
