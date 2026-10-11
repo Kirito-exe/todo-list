@@ -18,5 +18,6 @@ export default function(){
     function listProjectsArr(){
         return listProjects;
     }
+    addNewProject("Inbox")
     return {addNewProject,deleteProject,getProject,listProjectsArr}
 }
