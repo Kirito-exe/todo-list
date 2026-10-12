@@ -1,5 +1,4 @@
 import projectsControl from "./projects-control.js";
-import { addProjectDialog } from "./dialog-control.js";
 function screenController(){
     let pc = projectsControl();
     let menu = document.querySelector("#menu");
