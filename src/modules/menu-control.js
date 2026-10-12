@@ -1,4 +1,5 @@
 import projectsControl from "./projects-control.js";
+import { addProjectDialog } from "./dialog-control.js";
 function screenController(){
     let pc = projectsControl();
     let menu = document.querySelector("#menu");
@@ -9,29 +10,45 @@ function screenController(){
             let projectDelete = document.createElement("button");
             projectTitle.textContent = item.getName();
             let id = item.getId();
-            
+
             projectDelete.textContent = "X";
-            
+
             let menuRow = document.createElement("div");
             menuRow.dataset.projectId = id
             menuRow.setAttribute("class","menu-row");
             menuRow.appendChild(projectTitle);
             menuRow.appendChild(projectDelete);
             menu.appendChild(menuRow);
-        }
-    (function(){
+            deletefunc();
+        }}
+    function deletefunc(){
         let deleteButtons = document.querySelectorAll(".menu-row button");
         deleteButtons.forEach((button)=>{
             button.addEventListener("click",()=>{
                 let parent = button.parentNode;
-                console.log(parent);
-                console.log(parent.dataset.projectId);
                 pc.deleteProject(parent.dataset.projectId);
                 refreshProjectList();
             })
         })
+        }
+    deletefunc();
+     (function addProjectButton(){
+         let addProject = document.querySelector(".whole-menu > button");
+         console.log(addProject)
+         let dialog = document.querySelector("#addProject-dialog")
+         addProject.addEventListener("click",()=>{
+             dialog.showModal();
+        })
+        let submit = dialog.querySelector("button");
+        submit.addEventListener("click",()=>{
+            let inputBox = document.querySelector("#project-name");
+            let projectName = inputBox.value;
+            pc.addNewProject(projectName);
+            inputBox.value="";
+            dialog.close()
+            refreshProjectList();
+        })
         }())
-    }
-    return {refreshProjectList};
+    return {refreshProjectList,};
 }
 export {screenController};

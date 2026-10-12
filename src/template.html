@@ -10,11 +10,14 @@
         <div class="header">
             <h1>TO DO LIST</h1>
         </div>
-        <div id="menu">
-            <div class="menu-row">
-                <div>Project name</div>
-                <button>X</button>
+        <div class="whole-menu">
+            <div id="menu">
+                <div class="menu-row">
+                    <div>Project name</div>
+                    <button>X</button>
+                </div>
             </div>
+            <button>Add Project</button>
         </div>
         <div id="content">
 
@@ -22,6 +25,15 @@
         <div class="footer">
             <div>Made by Kirito(discord:@rtrd_abhii)</div>
         </div>
+        <dialog id="addProject-dialog">
+            <form method="dialog">
+                <div class="form-row">
+                    <label for="project-name">Enter Project Name:</label>
+                    <input type="text" id="project-name" name="project-name">
+                </div>
+                <button type="button">Add</button>
+            </form>
+        </dialog>
     </div>
 </body>
 </html>
