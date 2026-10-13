@@ -6,6 +6,7 @@ function screenController(){
     function refreshProjectList(){
         menu.textContent="";
         for(let item of pc.listProjectsArr()){
+            let tl = taskLoader(item);
             let projectTitle = document.createElement("div");
             let projectDelete = document.createElement("button");
             projectTitle.textContent = item.getName();
@@ -20,8 +21,10 @@ function screenController(){
             menuRow.appendChild(projectDelete);
             menu.appendChild(menuRow);
             deletefunc();
-            projectTitle.addEventListener("click",()=>taskLoader(item))
-        }}
+            projectTitle.addEventListener("click",()=>tl.loadTasks());
+            tl.delTask()
+        }
+    }
     function deletefunc(){
         let deleteButtons = document.querySelectorAll(".menu-row button");
         deleteButtons.forEach((button)=>{
@@ -54,6 +57,8 @@ function screenController(){
             refreshProjectList();
         })
         }())
+    let tlInbox = taskLoader(pc.getProject(1));
+    tlInbox.loadTasks();
     return {refreshProjectList,};
 }
 export {screenController};

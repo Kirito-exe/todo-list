@@ -12,7 +12,7 @@ export default function (projectName) {
     tasks[n - 1].toggleStatus();
   }
   function deleteTask(n) {
-    tasks.pop(n - 1);
+    tasks.splice(n-1,1);
   }
   function returnTasks() {
     return tasks;
