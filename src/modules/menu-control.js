@@ -1,4 +1,5 @@
 import projectsControl from "./projects-control.js";
+import taskLoader from "./task-loader.js";
 function screenController(){
     let pc = projectsControl();
     let menu = document.querySelector("#menu");
@@ -19,14 +20,19 @@ function screenController(){
             menuRow.appendChild(projectDelete);
             menu.appendChild(menuRow);
             deletefunc();
+            projectTitle.addEventListener("click",()=>taskLoader(item))
         }}
     function deletefunc(){
         let deleteButtons = document.querySelectorAll(".menu-row button");
         deleteButtons.forEach((button)=>{
             button.addEventListener("click",()=>{
                 let parent = button.parentNode;
+                let tasks = document.querySelector(".tasks")
                 pc.deleteProject(parent.dataset.projectId);
                 refreshProjectList();
+                if(parent.dataset.projectId === tasks.dataset.projectId){
+                    tasks.textContent=""
+                }
             })
         })
         }

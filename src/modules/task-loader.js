@@ -23,4 +23,5 @@ export default function(project){
         taskRow.appendChild(del)
         tasks.appendChild(taskRow);
     }
+    tasks.dataset.projectId=project.getId();
 }
