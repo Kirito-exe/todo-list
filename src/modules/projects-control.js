@@ -19,5 +19,6 @@ export default function(){
         return listProjects;
     }
     addNewProject("Inbox");
+    listProjects[0].addTask("title", "description", "10/10/2026", "priority", "note")
     return {addNewProject,deleteProject,getProject,listProjectsArr}
 }

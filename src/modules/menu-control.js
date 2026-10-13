@@ -31,7 +31,7 @@ function screenController(){
         })
         }
     deletefunc();
-     (function addProjectButton(){
+     (function(){
          let addProject = document.querySelector(".whole-menu > button");
          console.log(addProject)
          let dialog = document.querySelector("#addProject-dialog")
