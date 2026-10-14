@@ -3,6 +3,7 @@ export default function(project){
     function loadTasks(){
         tasks.textContent="";
         for(let task of project.returnTasks()){
+            console.log(project.returnTasks())
             let taskRow = document.createElement("div");
             taskRow.setAttribute("class","task-row");
             let checkbox = document.createElement("input");

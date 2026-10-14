@@ -18,7 +18,10 @@ export default function(){
     function listProjectsArr(){
         return listProjects;
     }
+    function addTaskToProject(index,title, description, dueDate, priority, note){
+        listProjects[index].addTask(title, description, dueDate, priority, note);
+    }
     addNewProject("Inbox");
     listProjects[0].addTask("title", "description", "10/10/2026", "priority", "note")
-    return {addNewProject,deleteProject,getProject,listProjectsArr}
+    return {addNewProject,deleteProject,getProject,listProjectsArr, addTaskToProject}
 }

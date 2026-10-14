@@ -1,8 +1,9 @@
 import projectsControl from "./projects-control.js";
 import taskLoader from "./task-loader.js";
-function screenController(){
-    let pc = projectsControl();
+import addTask from "./add-task.js"
+function screenController(pc){
     let menu = document.querySelector("#menu");
+    let {refreshOptionList} = addTask(pc);
     function refreshProjectList(){
         menu.textContent="";
         for(let item of pc.listProjectsArr()){
@@ -23,6 +24,7 @@ function screenController(){
             deletefunc();
             projectTitle.addEventListener("click",()=>tl.loadTasks());
             tl.delTask()
+            refreshOptionList()
         }
     }
     function deletefunc(){

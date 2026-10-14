@@ -29,7 +29,7 @@
                         <button>X</button>
                     </div>
                 </div>
-            <button>Add Task</button>
+            <button id="addTask">Add Task</button>
         </div>
         <div class="footer">
             <div>Made by Kirito(discord:@rtrd_abhii)</div>
@@ -47,24 +47,31 @@
             <form method="dialog">
                 <div class="form-row">
                     <label for="task-title">Title:</label>
-                    <input type="text" id="task-title" name="task-title" value="title" required>
+                    <input type="text" id="task-title" name="task-title" required>
                 </div>
                 <div class="form-row">
                     <label for="task-desc">Description:</label>
-                    <input type="text" id="task-desc" name="task-desc" value="description">
+                    <input type="text" id="task-desc" name="task-desc">
                 </div>
                 <div class="form-row">
                     <label for="due-date">Due Date:</label>
-                    <input type="date" id="due-date" name="due-date">
+                    <input type="date" id="due-date" name="due-date" required>
                 </div>
                 <div class="form-row">
                     <label for="task-note">Note:</label>
-                    <input type="text" id="tast-note" name="task-note" value="note">
+                    <input type="text" id="task-note" name="task-note">
                 </div>
                 <div class="form-row">
                     <label for="priority"></label>
                     <input type="range" name="priority" id="priority" min="0" max="10" step="5" value="0">
                 </div>
+                <div class="form-row">
+                    <label for="project-selection">Which project?</label>
+                    <select id="project-selection" name="project">
+
+                    </select>
+                </div>
+                <button type="submit">Submit</button>
             </form>
         </dialog>
     </div>
