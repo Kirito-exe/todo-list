@@ -1,7 +1,9 @@
+import taskLoader from "./task-loader.js";
 export default function(pc){
     let dialog = document.querySelector("#addTask-dialog");
     let addButton = document.querySelector("#addTask")
     let projects = dialog.querySelector("#project-selection");
+    let form = dialog.querySelector("form")
     addButton.addEventListener("click",()=>{
         dialog.showModal()
     })
@@ -21,7 +23,8 @@ export default function(pc){
     refreshOptionList();
     function taskSubmit(){
     let submitButton = dialog.querySelector("button[type='submit']");
-    submitButton.addEventListener("click",(event)=>{
+    form.addEventListener("submit",function(event){
+        console.log("hi")
         let title=dialog.querySelector("#task-title").value;
         let desc=dialog.querySelector("#task-desc").value;
         let date=dialog.querySelector("#due-date").value;
@@ -36,8 +39,14 @@ export default function(pc){
         }
         let projectIndex = projects.value;
         pc.addTaskToProject(projectIndex,title, desc, date, priority, note);
+        let {loadTasks,delTask} = taskLoader(pc.getProject(parseInt(projectIndex)+1));
+        loadTasks();
+        delTask();
+        dialog.close();
+        event.preventDefault()
     })
     }
+
 
     return {refreshOptionList,taskSubmit}
 }

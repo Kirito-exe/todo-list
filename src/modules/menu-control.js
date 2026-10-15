@@ -1,4 +1,4 @@
-import projectsControl from "./projects-control.js";
+
 import taskLoader from "./task-loader.js";
 import addTask from "./add-task.js"
 function screenController(pc){
@@ -25,6 +25,7 @@ function screenController(pc){
             projectTitle.addEventListener("click",()=>tl.loadTasks());
             tl.delTask()
             refreshOptionList()
+            console.log(pc.listProjectsArr());
         }
     }
     function deletefunc(){
@@ -49,14 +50,15 @@ function screenController(pc){
          addProject.addEventListener("click",()=>{
              dialog.showModal();
         })
-        let submit = dialog.querySelector("button");
-        submit.addEventListener("click",()=>{
+        let form = dialog.querySelector("form");
+        form.addEventListener("submit",(event)=>{
             let inputBox = document.querySelector("#project-name");
             let projectName = inputBox.value;
             pc.addNewProject(projectName);
             inputBox.value="";
             dialog.close()
             refreshProjectList();
+            event.preventDefault();
         })
         }())
     let tlInbox = taskLoader(pc.getProject(1));
