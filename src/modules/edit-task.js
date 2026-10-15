@@ -1,6 +1,7 @@
 
 import taskLoader from "./task-loader.js";
 export function showDetails(pc,task){
+    console.log("showDetails was accessed")
     let dialog=document.querySelector("#editTask-dialog");
     let title=dialog.querySelector("#task-title");
     let desc=dialog.querySelector("#task-desc");
@@ -35,6 +36,9 @@ export function showDetails(pc,task){
             priorityStr = "high"
         }
         task.priority = priorityStr;
+        console.log("submit button was accessed")
+        event.preventDefault();
+        dialog.close()
     }
     editButton.addEventListener("click",()=>{
         title.disabled =false;
@@ -43,12 +47,6 @@ export function showDetails(pc,task){
         note.disabled = false;
         priority.disabled = false;
         submitButton.disabled = false;
-        form.addEventListener("submit",(event)=>{
-            submitEvent();
-            event.preventDefault();
-            dialog.close()
-            // reloadTask(pc)
-        })
     })
     dialog.addEventListener("close",()=>{
         title.disabled =true;
@@ -57,21 +55,26 @@ export function showDetails(pc,task){
         note.disabled = true;
         priority.disabled = true;
         submitButton.disabled = true;
-        form.removeEventListener("submit",(event)=>{
-            submitEvent();
-            event.preventDefault();
-            dialog.close();
-        })
+        title.value= ""
+        desc.value = ""
+        date.value = ""
+        note.value = ""
+        priority.value = ""
+        form.removeEventListener("submit",submitEvent)
+        reloadTask(pc);
     })
+    form.addEventListener("submit",submitEvent)
     dialog.showModal();
 }
 export function applyEditDialog(pc){
+
+    console.log("apply edit was accessed")
     let tasks = document.querySelector(".tasks");
     let taskTitles = tasks.querySelectorAll("#task-title");
     let projectIndex ="";
     taskTitles.forEach((task)=>{
         task.addEventListener("click",(event)=>{
-            let taskIndex = parseInt(event.target.parentNode.dataset.taskId);
+            let taskIndex = parseInt(event.currentTarget.parentNode.dataset.taskId);
             console.log(taskIndex)
             let projectId = tasks.dataset.projectId;
             for(let i =0;i<pc.listProjectsArr().length;i++){
@@ -80,6 +83,7 @@ export function applyEditDialog(pc){
                     console.log(projectIndex);
                 }
             }
+            console.log("task event listener was accessed")
             console.log(pc.getTask(projectIndex,taskIndex))
             showDetails(pc,pc.getTask(projectIndex,taskIndex))
         })
@@ -89,6 +93,6 @@ export function applyEditDialog(pc){
 function reloadTask(pc){
     let tasks = document.querySelector(".tasks");
     let projectId = tasks.dataset.projectId;
-    let tl = taskLoader(pc.getProjectWithId(projectId));
+    let tl = taskLoader(pc,pc.getProjectWithId(projectId));
     tl.loadTasks();
 }

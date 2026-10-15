@@ -1,5 +1,4 @@
 import taskLoader from "./task-loader.js";
-import { applyEditDialog } from "./edit-task.js";
 export default function(pc){
     let dialog = document.querySelector("#addTask-dialog");
     let addButton = document.querySelector("#addTask")
@@ -12,7 +11,6 @@ export default function(pc){
         projects.textContent='';
         for(let i =0; i<pc.listProjectsArr().length;i++){
         let option = document.createElement("option");
-        console.log("i was accessed tho")
         option.value = i;
         option.textContent=pc.listProjectsArr()[i].getName();
         projects.appendChild(option);
@@ -39,11 +37,10 @@ export default function(pc){
         }
         let projectIndex = projects.value;
         pc.addTaskToProject(projectIndex,title, desc, date, priority, note);
-        let {loadTasks} = taskLoader(pc.getProject(parseInt(projectIndex)+1));
+        let {loadTasks} = taskLoader(pc,pc.getProject(parseInt(projectIndex)+1));
         loadTasks();
         dialog.close();
         event.preventDefault()
-        applyEditDialog(pc)
     })
     }
 

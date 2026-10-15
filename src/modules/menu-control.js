@@ -1,33 +1,32 @@
-
+import { applyEditDialog, showDetails } from "./edit-task.js";
 import taskLoader from "./task-loader.js";
 import addTask from "./add-task.js"
-import { applyEditDialog } from "./edit-task.js";
 function screenController(pc){
     let menu = document.querySelector("#menu");
     let {refreshOptionList} = addTask(pc);
     function refreshProjectList(){
         menu.textContent="";
         for(let item of pc.listProjectsArr()){
-            let tl = taskLoader(item);
+            let tl = taskLoader(pc,item);
             let projectTitle = document.createElement("div");
             let projectDelete = document.createElement("button");
             projectTitle.textContent = item.getName();
             let id = item.getId();
-
+            if(pc.listProjectsArr().indexOf(item)!==0){
+                menuRow.appendChild(projectDelete);
+            }
             projectDelete.textContent = "X";
 
             let menuRow = document.createElement("div");
             menuRow.dataset.projectId = id
             menuRow.setAttribute("class","menu-row");
             menuRow.appendChild(projectTitle);
-            menuRow.appendChild(projectDelete);
+            
             menu.appendChild(menuRow);
             deletefunc();
             projectTitle.addEventListener("click",()=>tl.loadTasks());
             refreshOptionList()
-            console.log(pc.listProjectsArr());
         }
-        applyEditDialog(pc);
     }
     function deletefunc(){
         let deleteButtons = document.querySelectorAll(".menu-row button");
@@ -46,7 +45,6 @@ function screenController(pc){
     deletefunc();
      (function(){
          let addProject = document.querySelector(".whole-menu > button");
-         console.log(addProject)
          let dialog = document.querySelector("#addProject-dialog")
          addProject.addEventListener("click",()=>{
              dialog.showModal();
@@ -62,7 +60,7 @@ function screenController(pc){
             event.preventDefault();
         })
         }())
-    let tlInbox = taskLoader(pc.getProject(1));
+    let tlInbox = taskLoader(pc,pc.getProject(1));
     tlInbox.loadTasks();
     return {refreshProjectList,};
 }

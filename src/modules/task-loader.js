@@ -1,10 +1,9 @@
-import { showDetails } from "./edit-task.js";
-export default function(project){
+import { applyEditDialog, showDetails } from "./edit-task.js";
+export default function(pc,project){
     let tasks = document.querySelector("#content .tasks");
     function loadTasks(){
         tasks.textContent="";
         for(let task of project.returnTasks()){
-            console.log(project.returnTasks())
             let taskRow = document.createElement("div");
             taskRow.setAttribute("class","task-row");
             let checkbox = document.createElement("input");
@@ -30,6 +29,7 @@ export default function(project){
         }
         checkboxcall();
         delTask();
+        applyEditDialog(pc);
     }
     
     function delTask(){
