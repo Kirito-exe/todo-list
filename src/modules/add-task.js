@@ -39,9 +39,8 @@ export default function(pc){
         }
         let projectIndex = projects.value;
         pc.addTaskToProject(projectIndex,title, desc, date, priority, note);
-        let {loadTasks,delTask} = taskLoader(pc.getProject(parseInt(projectIndex)+1));
+        let {loadTasks} = taskLoader(pc.getProject(parseInt(projectIndex)+1));
         loadTasks();
-        delTask();
         dialog.close();
         event.preventDefault()
         applyEditDialog(pc)

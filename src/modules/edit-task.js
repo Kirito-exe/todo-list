@@ -11,7 +11,13 @@ export function showDetails(pc,task){
     desc.value = task.description;
     date.value = task.dueDate;
     note.value = task.note;
-    priority.value = task.priority;
+    if(task.priority==="low"){
+        priority.value=0;
+    }else if(task.priority==="medium"){
+        priority.value = 5
+    }else{
+        priority.value=10;
+    }
     let editButton = dialog.querySelector("#edit-details");
     let form = dialog.querySelector("form");
     let submitButton = dialog.querySelector("button[type='submit']")
@@ -41,7 +47,7 @@ export function showDetails(pc,task){
             submitEvent();
             event.preventDefault();
             dialog.close()
-            reloadTask(pc)
+            // reloadTask(pc)
         })
     })
     dialog.addEventListener("close",()=>{
@@ -54,6 +60,7 @@ export function showDetails(pc,task){
         form.removeEventListener("submit",(event)=>{
             submitEvent();
             event.preventDefault();
+            dialog.close();
         })
     })
     dialog.showModal();

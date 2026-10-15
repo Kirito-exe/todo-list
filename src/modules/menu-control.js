@@ -24,7 +24,6 @@ function screenController(pc){
             menu.appendChild(menuRow);
             deletefunc();
             projectTitle.addEventListener("click",()=>tl.loadTasks());
-            tl.delTask()
             refreshOptionList()
             console.log(pc.listProjectsArr());
         }

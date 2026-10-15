@@ -26,30 +26,35 @@ export default function(project){
             taskRow.appendChild(del)
             taskRow.dataset.taskId = project.returnTasks().indexOf(task);
             tasks.appendChild(taskRow);
-            checkboxcall(task);
-            delTask();
+            
         }
+        checkboxcall();
+        delTask();
     }
     
     function delTask(){
         let delButtons = document.querySelectorAll(".task-row button");
         delButtons.forEach((button)=>{
-            button.addEventListener("click",()=>{
-                let taskRow = button.parentNode;
-                project.deleteTask(taskRow.dataset.taskId);
+            button.addEventListener("click",(event)=>{
+                let taskRow = event.currentTarget.parentNode;
+                project.deleteTask(parseInt(taskRow.dataset.taskId));
                 loadTasks();
+                console.log(event.currentTarget);
+                console.log(delButtons)
             })
         })
     }
-    function checkboxcall(task){
+    function checkboxcall(){
         let checkboxes = document.querySelectorAll("input[type='checkbox']");
         checkboxes.forEach((box)=>{
             box.addEventListener('change', function(event) {
+                let taskId = parseInt(event.currentTarget.parentNode.dataset.taskId);
                 if (event.currentTarget.checked) {
-                    task.doneStatus=true;
-                    console.log(task)
+                    project.returnTasks()[taskId].doneStatus = true;
+                    console.log(project.returnTasks()[taskId])
+                    console.log(taskId)
                 } else {
-                    task.doneStatus=false;
+                    project.returnTasks()[taskId].doneStatus = false;
                 }
                 });
         })
