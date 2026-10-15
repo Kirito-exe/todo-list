@@ -1,4 +1,5 @@
 import taskLoader from "./task-loader.js";
+import { applyEditDialog } from "./edit-task.js";
 export default function(pc){
     let dialog = document.querySelector("#addTask-dialog");
     let addButton = document.querySelector("#addTask")
@@ -22,7 +23,6 @@ export default function(pc){
     }
     refreshOptionList();
     function taskSubmit(){
-    let submitButton = dialog.querySelector("button[type='submit']");
     form.addEventListener("submit",function(event){
         console.log("hi")
         let title=dialog.querySelector("#task-title").value;
@@ -44,6 +44,7 @@ export default function(pc){
         delTask();
         dialog.close();
         event.preventDefault()
+        applyEditDialog(pc)
     })
     }
 

@@ -74,6 +74,34 @@
                 <button type="submit">Submit</button>
             </form>
         </dialog>
+        <dialog id="editTask-dialog">
+            <form method="dialog">
+                <div class="form-row">
+                    <label for="task-title">Title:</label>
+                    <input type="text" id="task-title" name="task-title" required disabled>
+                </div>
+                <div class="form-row">
+                    <label for="task-desc">Description:</label>
+                    <input type="text" id="task-desc" name="task-desc" disabled>
+                </div>
+                <div class="form-row">
+                    <label for="due-date">Due Date:</label>
+                    <input type="date" id="due-date" name="due-date" required disabled>
+                </div>
+                <div class="form-row">
+                    <label for="task-note">Note:</label>
+                    <input type="text" id="task-note" name="task-note" disabled>
+                </div>
+                <div class="form-row">
+                    <label for="priority"></label>
+                    <input type="range" name="priority" id="priority" min="0" max="11" step="5"  disabled>
+                </div>
+                <div class="buttons">
+                    <button type="button" id="edit-details">Edit</button>
+                    <button type="submit" disabled>Submit</button>
+                </div>
+            </form>
+        </dialog>
     </div>
 </body>
 </html>

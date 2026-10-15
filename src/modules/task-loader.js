@@ -1,3 +1,4 @@
+import { showDetails } from "./edit-task.js";
 export default function(project){
     let tasks = document.querySelector("#content .tasks");
     function loadTasks(){
@@ -26,6 +27,7 @@ export default function(project){
             taskRow.dataset.taskId = project.returnTasks().indexOf(task);
             tasks.appendChild(taskRow);
             checkboxcall(task);
+            delTask();
         }
     }
     
@@ -52,6 +54,7 @@ export default function(project){
                 });
         })
     }
+    
     tasks.dataset.projectId=project.getId();
     return {loadTasks,delTask}
 }

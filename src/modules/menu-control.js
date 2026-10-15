@@ -1,6 +1,7 @@
 
 import taskLoader from "./task-loader.js";
 import addTask from "./add-task.js"
+import { applyEditDialog } from "./edit-task.js";
 function screenController(pc){
     let menu = document.querySelector("#menu");
     let {refreshOptionList} = addTask(pc);
@@ -27,6 +28,7 @@ function screenController(pc){
             refreshOptionList()
             console.log(pc.listProjectsArr());
         }
+        applyEditDialog(pc);
     }
     function deletefunc(){
         let deleteButtons = document.querySelectorAll(".menu-row button");

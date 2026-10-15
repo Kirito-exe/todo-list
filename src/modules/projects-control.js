@@ -15,13 +15,23 @@ export default function(){
     function getProject(n){
         return listProjects[n-1];
     }
+    function getProjectWithId(projectId){
+        for(let i=0;i<listProjects.length;i++){
+            if (listProjects[i].getId()===projectId){
+                return listProjects[i];
+            }
+        }
+    }
     function listProjectsArr(){
         return listProjects;
     }
     function addTaskToProject(index,title, description, dueDate, priority, note){
         listProjects[index].addTask(title, description, dueDate, priority, note);
     }
+    function getTask(projectIndex,taskIndex){
+        return listProjects[projectIndex].returnTasks()[taskIndex];
+    }
     addNewProject("Inbox");
     listProjects[0].addTask("title", "description", "10/10/2026", "priority", "note")
-    return {addNewProject,deleteProject,getProject,listProjectsArr, addTaskToProject}
+    return {addNewProject,deleteProject,getProject,listProjectsArr, addTaskToProject,getTask,getProjectWithId}
 }
