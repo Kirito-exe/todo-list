@@ -1,7 +1,6 @@
-
+import { format } from "date-fns";
 import taskLoader from "./task-loader.js";
 export function showDetails(pc,task){
-    console.log("showDetails was accessed")
     let dialog=document.querySelector("#editTask-dialog");
     let title=dialog.querySelector("#task-title");
     let desc=dialog.querySelector("#task-desc");
@@ -10,7 +9,7 @@ export function showDetails(pc,task){
     let priority = dialog.querySelector("#priority");
     title.value= task.title;
     desc.value = task.description;
-    date.value = task.dueDate;
+    date.value = format(task.dueDate,"yyyy-MM-d");
     note.value = task.note;
     if(task.priority==="low"){
         priority.value=0;
@@ -36,7 +35,6 @@ export function showDetails(pc,task){
             priorityStr = "high"
         }
         task.priority = priorityStr;
-        console.log("submit button was accessed")
         event.preventDefault();
         dialog.close()
     }
@@ -68,23 +66,19 @@ export function showDetails(pc,task){
 }
 export function applyEditDialog(pc){
 
-    console.log("apply edit was accessed")
     let tasks = document.querySelector(".tasks");
     let taskTitles = tasks.querySelectorAll("#task-title");
     let projectIndex ="";
     taskTitles.forEach((task)=>{
         task.addEventListener("click",(event)=>{
             let taskIndex = parseInt(event.currentTarget.parentNode.dataset.taskId);
-            console.log(taskIndex)
             let projectId = tasks.dataset.projectId;
             for(let i =0;i<pc.listProjectsArr().length;i++){
                 if(projectId===pc.listProjectsArr()[i].getId()){
                     projectIndex = i;
-                    console.log(projectIndex);
                 }
             }
-            console.log("task event listener was accessed")
-            console.log(pc.getTask(projectIndex,taskIndex))
+            
             showDetails(pc,pc.getTask(projectIndex,taskIndex))
         })
     })

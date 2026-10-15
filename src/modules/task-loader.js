@@ -1,7 +1,8 @@
-import { applyEditDialog, showDetails } from "./edit-task.js";
+import { applyEditDialog } from "./edit-task.js";
 export default function(pc,project){
     let tasks = document.querySelector("#content .tasks");
     function loadTasks(){
+        project.sortThroughDate()
         tasks.textContent="";
         for(let task of project.returnTasks()){
             let taskRow = document.createElement("div");
@@ -17,7 +18,7 @@ export default function(pc,project){
             taskTitle.textContent = task.title;
             let taskDate = document.createElement("div");
             taskDate.id = "task-dueDate";
-            taskDate.textContent = task.dueDate;
+            taskDate.textContent = task.formattedDate;
             taskRow.appendChild(taskTitle);
             taskRow.appendChild(taskDate);
             let del = document.createElement("button");
@@ -39,8 +40,6 @@ export default function(pc,project){
                 let taskRow = event.currentTarget.parentNode;
                 project.deleteTask(parseInt(taskRow.dataset.taskId));
                 loadTasks();
-                console.log(event.currentTarget);
-                console.log(delButtons)
             })
         })
     }
@@ -51,8 +50,6 @@ export default function(pc,project){
                 let taskId = parseInt(event.currentTarget.parentNode.dataset.taskId);
                 if (event.currentTarget.checked) {
                     project.returnTasks()[taskId].doneStatus = true;
-                    console.log(project.returnTasks()[taskId])
-                    console.log(taskId)
                 } else {
                     project.returnTasks()[taskId].doneStatus = false;
                 }

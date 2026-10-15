@@ -1,4 +1,4 @@
-import { applyEditDialog, showDetails } from "./edit-task.js";
+
 import taskLoader from "./task-loader.js";
 import addTask from "./add-task.js"
 function screenController(pc){
@@ -7,21 +7,22 @@ function screenController(pc){
     function refreshProjectList(){
         menu.textContent="";
         for(let item of pc.listProjectsArr()){
+            item.sortThroughDate();
             let tl = taskLoader(pc,item);
             let projectTitle = document.createElement("div");
             let projectDelete = document.createElement("button");
             projectTitle.textContent = item.getName();
             let id = item.getId();
-            if(pc.listProjectsArr().indexOf(item)!==0){
-                menuRow.appendChild(projectDelete);
-            }
-            projectDelete.textContent = "X";
+            
 
             let menuRow = document.createElement("div");
             menuRow.dataset.projectId = id
             menuRow.setAttribute("class","menu-row");
             menuRow.appendChild(projectTitle);
-            
+            if(pc.listProjectsArr().indexOf(item)!==0){
+                menuRow.appendChild(projectDelete);
+            }
+            projectDelete.textContent = "X";
             menu.appendChild(menuRow);
             deletefunc();
             projectTitle.addEventListener("click",()=>tl.loadTasks());

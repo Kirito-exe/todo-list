@@ -1,3 +1,4 @@
+import { compareAsc } from "date-fns";
 import todoItem from "./todo-item.js";
 export default function (projectName) {
   let name = projectName;
@@ -26,5 +27,8 @@ export default function (projectName) {
   function getId(){
     return projectId;
   }
-  return { toggleTaskStatus, deleteTask, returnTasks, changeName,addTask, getName,getId };
+  function sortThroughDate(){
+    tasks.sort((a,b)=>compareAsc(a.dueDate,b.dueDate));
+  }
+  return { toggleTaskStatus, deleteTask, returnTasks, changeName,addTask, getName,getId,sortThroughDate };
 }
