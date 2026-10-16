@@ -22,7 +22,6 @@ export default function(pc){
     refreshOptionList();
     function taskSubmit(){
     form.addEventListener("submit",function(event){
-        console.log("hi")
         let title=dialog.querySelector("#task-title").value;
         let desc=dialog.querySelector("#task-desc").value;
         let date=dialog.querySelector("#due-date").value;

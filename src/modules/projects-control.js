@@ -1,8 +1,8 @@
-import project from "./project-module.js";
+import {project} from "./project-module.js"
 export default function(){
     let listProjects =[];
     function addNewProject(name){
-        let projectItem = project(name);
+        let projectItem = new project(name);
         listProjects.push(projectItem);
     }
     function deleteProject(id){
