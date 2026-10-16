@@ -59,6 +59,10 @@
     align-items: center;
     gap:1em;
 }
+.task-row #task-title:hover{
+    font-size: 1.5rem;
+    font-weight: 1000;
+}
 .task-row #task-title{
     max-width: 210px;
     font-weight: bold;
@@ -66,6 +70,7 @@
     width: 100%;
     overflow: hidden;
 }
+
 
 #task-status{
     appearance: none;

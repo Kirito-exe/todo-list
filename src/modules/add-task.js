@@ -1,11 +1,16 @@
+import { format } from "date-fns";
 import taskLoader from "./task-loader.js";
 export default function(pc){
     let dialog = document.querySelector("#addTask-dialog");
     let addButton = document.querySelector("#addTask")
     let projects = dialog.querySelector("#project-selection");
     let form = dialog.querySelector("form")
+    
     addButton.addEventListener("click",()=>{
         dialog.showModal()
+        let today = format(new Date(),"yyyy-MM-d")
+    let date = form.querySelector("#due-date");
+    date.setAttribute("min",today)
     })
     function refreshOptionList(){
         projects.textContent='';

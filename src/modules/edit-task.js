@@ -8,6 +8,8 @@ export function showDetails(pc,task){
     let date=dialog.querySelector("#due-date");
     let note=dialog.querySelector("#task-note");
     let priority = dialog.querySelector("#priority");
+    let today = format(new Date(),"yyyy/MM/d")
+    date.setAttribute("min",today)
     title.value = task.title;
     desc.value = task.description;
     date.value = format(task.dueDate,"yyyy-MM-d");

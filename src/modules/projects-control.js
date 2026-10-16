@@ -1,12 +1,14 @@
 import {project} from "./project-module.js"
+import { format } from "date-fns";
 import { populateStorage,fetchStorage,StorageStatus } from "./webStorage.js";
 export default function(){
     let listProjects =[];
     if(StorageStatus()==="exists"){
         listProjects = fetchStorage()
     }else{
+        let today = format(new Date(),"MM/d/yyyy")
         addNewProject("Inbox");
-        listProjects[0].addTask("title", "description", "10/10/2026", "priority", "note")
+        listProjects[0].addTask("title", "description", today, "priority", "note")
         populateStorage(listProjects);
     }
     function addNewProject(name){

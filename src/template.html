@@ -34,7 +34,7 @@
         <div class="footer">
             <div>Made by Kirito(discord:@rtrd_abhii)</div>
         </div>
-        <dialog id="addProject-dialog">
+        <dialog id="addProject-dialog" closedby="any">
             <form method="dialog">
                 <h2>Add Project:</h2>
                 <div class="form-row">
@@ -44,7 +44,7 @@
                 <button type="submit">Submit</button>
             </form>
         </dialog>
-        <dialog id="addTask-dialog">
+        <dialog id="addTask-dialog" closedby="any">
             <form method="dialog">
                 <div class="form-row">
                     <label for="task-title">Title:</label>
@@ -63,7 +63,7 @@
                     <input type="text" id="task-note" name="task-note">
                 </div>
                 <div class="form-row">
-                    <label for="priority"></label>
+                    <label for="priority">Priority:</label>
                     <input type="range" name="priority" id="priority" min="0" max="10" step="5" value="0">
                 </div>
                 <div class="form-row">
@@ -75,7 +75,7 @@
                 <button type="submit">Submit</button>
             </form>
         </dialog>
-        <dialog id="editTask-dialog">
+        <dialog id="editTask-dialog" closedby="any">
             <form method="dialog">
                 <div class="form-row">
                     <label for="task-title">Title:</label>
