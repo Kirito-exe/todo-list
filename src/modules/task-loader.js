@@ -3,6 +3,7 @@ import { populateStorage } from "./webStorage.js";
 export default function(pc,project){
     let tasks = document.querySelector("#content .tasks");
     function loadTasks(){
+        
         project.sortThroughDate()
         tasks.textContent="";
         for(let task of project.returnTasks()){
@@ -12,8 +13,11 @@ export default function(pc,project){
             checkbox.type = "checkbox";
             checkbox.id = "task-status";
             checkbox.name= "taskStatus";
-            
+            if(task.doneStatus===true){
+                checkbox.checked=true;
+            }
             taskRow.append(checkbox);
+            
             let taskTitle = document.createElement("div");
             taskTitle.id = "task-title";
             taskTitle.textContent = task.title;
@@ -29,8 +33,8 @@ export default function(pc,project){
             tasks.appendChild(taskRow);
             
         }
-        checkboxcall();
         delTask();
+        checkboxcall();
         applyEditDialog(pc);
     }
     
@@ -52,9 +56,11 @@ export default function(pc,project){
                 let taskId = parseInt(event.currentTarget.parentNode.dataset.taskId);
                 if (event.currentTarget.checked) {
                     project.returnTasks()[taskId].doneStatus = true;
+                    
                 } else {
                     project.returnTasks()[taskId].doneStatus = false;
                 }
+                populateStorage(pc.listProjectsArr())
                 });
         })
     }

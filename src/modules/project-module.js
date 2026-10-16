@@ -5,8 +5,8 @@ export function project(projectName) {
   this.projectId=crypto.randomUUID();
   this.tasks = [];
 }
-project.prototype.addTask = function(title, description, dueDate, priority, note){
-  let taskItem = new todoItem(title, description, dueDate, priority, note);
+project.prototype.addTask = function(title, description, dueDate, priority, note,status){
+  let taskItem = new todoItem(title, description, dueDate, priority, note,status);
   taskItem.setId = this.tasks.length+1;
   this.tasks.push(taskItem);
 }

@@ -21,7 +21,6 @@ export function populateStorage(arr){
     if(storageAvailable("localStorage")){
         let stringArr = JSON.stringify(arr);
         localStorage.setItem("projects",stringArr)
-        console.log("local storage was accessed")
     } else{
         console.log("local storage ggs")
     }
@@ -36,7 +35,7 @@ export function fetchStorage(){
             let pjt = new project(item.name);
             pjt.projectId = item.projectId;
             for (let task of item.tasks){
-                pjt.addTask(task.title,task.description,task.dueDate,task.priority,task.note);
+                pjt.addTask(task.title,task.description,task.dueDate,task.priority,task.note,task.doneStatus);
             }
             formattedArr.push(pjt);
         }
