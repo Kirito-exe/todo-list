@@ -30,12 +30,16 @@
     padding: 0.5em;
 }
 .whole-menu{
-    padding: 0em 1em;
+    padding: 1em 1em;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap:1em
 }
 .menu-row{
     display: flex;
     justify-content: space-between;
+    border-bottom: 2px solid rgb(0, 0, 0,0.4);
 }
 
 .task-row{
@@ -47,14 +51,14 @@
     border-radius: 10px;
     align-items: center;
 }
-.task-row button{
+.task-row button, .menu-row button{
     justify-self: end;
     background:none;
     border: none;
     padding: 0.5em;
     font-weight: bold;
 }
-.task-row button:hover{
+.task-row button:hover,.menu-row button:hover{
     background-color: red;
     color: white;
     border-radius: 5px;
@@ -75,8 +79,42 @@
     padding: 1em;
     border-radius: 10px;
 }
+.whole-menu >button{
+    padding: 1em;
+    border-radius: 10px;
+}
 #content{
     display: flex;
     flex-direction: column;
     gap:1em
+}
+#menu{
+    display: flex;
+    flex-direction: column;
+    gap:0.5em;
+}
+.menu-row div{
+    font-size: 1.5rem;
+    font-weight: bold;
+    flex:1
+}
+.menu-row div:hover{
+    cursor: pointer;
+}
+button:hover{
+    cursor: pointer;
+}
+.form-row{
+    display: flex;
+    flex-direction: column;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap:1em
+}
+dialog{
+    border: none;
+    border-radius: 10px;
+    padding: 1em 3em;
 }

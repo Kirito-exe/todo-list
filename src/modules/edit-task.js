@@ -13,11 +13,11 @@ export function showDetails(pc,task){
     date.value = format(task.dueDate,"yyyy-MM-d");
     note.value = task.note;
     if(task.priority==="low"){
-        priority.value=0;
+        priority.value="0";
     }else if(task.priority==="medium"){
-        priority.value = 5
+        priority.value = "5"
     }else{
-        priority.value=10;
+        priority.value="10";
     }
     let editButton = dialog.querySelector("#edit-details");
     let form = dialog.querySelector("form");
@@ -29,9 +29,9 @@ export function showDetails(pc,task){
         task.formattedDate = format(task.dueDate,"do-MMM-yyyy")
         task.note = note.value;
         let priorityStr = ""
-        if (priority.value===0){
+        if (priority.value==="0"){
             priorityStr = "low";
-        } else if(priority.value===5){
+        } else if(priority.value==="5"){
             priorityStr= "medium"
         } else {
             priorityStr = "high"

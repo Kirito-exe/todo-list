@@ -27,9 +27,10 @@ export default function(pc){
         let date=dialog.querySelector("#due-date").value;
         let note=dialog.querySelector("#task-note").value;
         let priority = dialog.querySelector("#priority").value;
-        if (priority===0){
+        console.log(priority);
+        if (priority==="0"){
             priority = "low";
-        } else if(priority===5){
+        } else if(priority==="5"){
             priority= "medium"
         } else {
             priority = "high"
