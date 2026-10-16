@@ -17,7 +17,15 @@ export default function(pc,project){
                 checkbox.checked=true;
             }
             taskRow.append(checkbox);
-            
+            let color=""
+            if(task.priority==="low"){
+                color = "green";
+            }else if(task.priority==="medium"){
+                color = "yellow"
+            }else{
+                color = "red"
+            }
+            taskRow.style.borderLeft = `7px solid ${color}`;
             let taskTitle = document.createElement("div");
             taskTitle.id = "task-title";
             taskTitle.textContent = task.title;
