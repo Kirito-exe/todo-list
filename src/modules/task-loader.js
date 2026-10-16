@@ -1,4 +1,5 @@
 import { applyEditDialog } from "./edit-task.js";
+import { populateStorage } from "./webStorage.js";
 export default function(pc,project){
     let tasks = document.querySelector("#content .tasks");
     function loadTasks(){
@@ -39,6 +40,7 @@ export default function(pc,project){
             button.addEventListener("click",(event)=>{
                 let taskRow = event.currentTarget.parentNode;
                 project.deleteTask(parseInt(taskRow.dataset.taskId));
+                populateStorage(pc.listProjectsArr())
                 loadTasks();
             })
         })

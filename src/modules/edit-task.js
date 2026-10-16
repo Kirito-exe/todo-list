@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import taskLoader from "./task-loader.js";
+import { populateStorage } from "./webStorage.js";
 export function showDetails(pc,task){
     let dialog=document.querySelector("#editTask-dialog");
     let title=dialog.querySelector("#task-title");
@@ -37,6 +38,7 @@ export function showDetails(pc,task){
         task.priority = priorityStr;
         event.preventDefault();
         dialog.close()
+        populateStorage(pc.listProjectsArr());
     }
     editButton.addEventListener("click",()=>{
         title.disabled =false;

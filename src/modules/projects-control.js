@@ -1,15 +1,25 @@
 import {project} from "./project-module.js"
+import { populateStorage,fetchStorage,StorageStatus } from "./webStorage.js";
 export default function(){
     let listProjects =[];
+    if(StorageStatus()==="exists"){
+        listProjects = fetchStorage()
+    }else{
+        addNewProject("Inbox");
+        listProjects[0].addTask("title", "description", "10/10/2026", "priority", "note")
+        populateStorage(listProjects);
+    }
     function addNewProject(name){
         let projectItem = new project(name);
         listProjects.push(projectItem);
+        populateStorage(listProjects);
     }
     function deleteProject(id){
         for(let item of listProjects){ 
             if(item.getId()===id){
                 listProjects.splice(listProjects.indexOf(item),1);
             }
+        populateStorage(listProjects);
         }
     }
     function getProject(n){
@@ -27,11 +37,11 @@ export default function(){
     }
     function addTaskToProject(index,title, description, dueDate, priority, note){
         listProjects[index].addTask(title, description, dueDate, priority, note);
+        populateStorage(listProjects)
     }
     function getTask(projectIndex,taskIndex){
         return listProjects[projectIndex].returnTasks()[taskIndex];
     }
-    addNewProject("Inbox");
-    listProjects[0].addTask("title", "description", "10/10/2026", "priority", "note")
+    
     return {addNewProject,deleteProject,getProject,listProjectsArr, addTaskToProject,getTask,getProjectWithId}
 }
