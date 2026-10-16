@@ -8,7 +8,7 @@ export function showDetails(pc,task){
     let date=dialog.querySelector("#due-date");
     let note=dialog.querySelector("#task-note");
     let priority = dialog.querySelector("#priority");
-    title.value= task.title;
+    title.value = task.title;
     desc.value = task.description;
     date.value = format(task.dueDate,"yyyy-MM-d");
     note.value = task.note;
@@ -26,6 +26,7 @@ export function showDetails(pc,task){
         task.title = title.value;
         task.description = desc.value;
         task.dueDate = new Date(date.value);
+        task.formattedDate = format(task.dueDate,"do-MMM-yyyy")
         task.note = note.value;
         let priorityStr = ""
         if (priority.value===0){

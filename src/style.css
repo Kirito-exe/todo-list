@@ -1,28 +1,82 @@
-
+:root{
+    --header-color:#0EAAF0;
+}
+.body{
+    font-family:monospace;
+}
 .container{
     min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr 3fr;
     grid-template-rows: min-content 1fr min-content ;
-    background-color: antiquewhite;
-    gap:1em
+    background-color: #f1f1f1;
+    column-gap:1em;
 }
 .header{
     grid-column: 1/3;
-    background-color: aqua;
+    background-color: var(--header-color);
+    padding: 1em 10em;
+    color: white;
+}
+.header{
+    box-shadow: 2px 2px 15px rgba(16, 16, 16, 0.3);
 }
 .footer{
     grid-column: 1/3;
-    background-color: blue;
+    background-color: var(--header-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em;
 }
-
+.whole-menu{
+    padding: 0em 1em;
+    background-color: white;
+}
 .menu-row{
     display: flex;
     justify-content: space-between;
 }
 
 .task-row{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: start;
+    padding: 1em;
+    background-color: white;
+    border-radius: 10px;
+    align-items: center;
+}
+.task-row button{
+    justify-self: end;
+    background:none;
+    border: none;
+    padding: 0.5em;
+    font-weight: bold;
+}
+.task-row button:hover{
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+}
+.tasks{
     display: flex;
-    justify-content: space-between;
-    border: 2px solid black;
+    flex-direction: column;
+    gap:1em
+}
+#content{
+    padding: 2em;
+}
+.whole-menu >button,#content>button{
+    width: 100%;
+    background: none;
+}
+#content>button{
+    padding: 1em;
+    border-radius: 10px;
+}
+#content{
+    display: flex;
+    flex-direction: column;
+    gap:1em
 }
