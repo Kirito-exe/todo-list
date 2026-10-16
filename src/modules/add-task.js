@@ -39,6 +39,11 @@ export default function(pc){
         pc.addTaskToProject(projectIndex,title, desc, date, priority, note);
         let {loadTasks} = taskLoader(pc,pc.getProject(parseInt(projectIndex)+1));
         loadTasks();
+        dialog.querySelector("#task-title").value="";
+        dialog.querySelector("#task-desc").value="";
+        dialog.querySelector("#due-date").value="";
+        dialog.querySelector("#task-note").value="";
+        dialog.querySelector("#priority").value="0";
         dialog.close();
         event.preventDefault()
     })
